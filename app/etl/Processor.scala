@@ -31,8 +31,7 @@ object pimp {
 
   type RS = ResultSet
 
-  implicit def c2c( col:TableColumn ) = new TableColumn2(col)
-  class TableColumn2(col:TableColumn){
+  implicit class TableColumn2(col:TableColumn){
 
     def getParents2:List[TableColumn] =
       for {
@@ -81,8 +80,7 @@ object pimp {
   case object EntityTable extends TableType
   case object RelationTable extends TableType
   
-  implicit def t2t( table:Table ) = new Table2(table)
-  class Table2( table:Table ){
+  implicit class Table2( table:Table ){
     
     def getType:Option[TableType] =
       if ( table.getColumn("id") != null )
